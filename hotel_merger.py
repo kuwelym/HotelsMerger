@@ -11,7 +11,15 @@ def main():
     args = parser.parse_args()
 
     hotel_ids = [] if args.hotel_ids.lower() == "none" else args.hotel_ids.split(",")
-    destination_ids = [] if args.destination_ids.lower() == "none" else [int(i) for i in args.destination_ids.split(",")]
+    
+    if args.destination_ids.lower() == "none":
+        destination_ids = []
+    else:
+        try:
+            destination_ids = [int(i) for i in args.destination_ids.split(",")]
+        except ValueError:
+            print("Error: destination_ids must be a comma-separated list of integers or 'none'")
+            return
 
     result = fetch_hotels(hotel_ids, destination_ids)
     print(result)
