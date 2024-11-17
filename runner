@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: ./runner <hotel_ids> <destination_ids>"
+    echo "Example: ./runner iJhz,SjyX 5432,1122"
+    echo "Or list all: ./runner none none"
+    exit 1
+fi
+
+python3 hotel_merger.py "$1" "$2"
